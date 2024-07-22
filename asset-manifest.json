@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/text-to-speech-simple/static/css/main.6f1f4ca6.css",
+    "main.js": "/text-to-speech-simple/static/js/main.fb17e186.js",
+    "static/js/453.9834ec83.chunk.js": "/text-to-speech-simple/static/js/453.9834ec83.chunk.js",
+    "index.html": "/text-to-speech-simple/index.html",
+    "main.6f1f4ca6.css.map": "/text-to-speech-simple/static/css/main.6f1f4ca6.css.map",
+    "main.fb17e186.js.map": "/text-to-speech-simple/static/js/main.fb17e186.js.map",
+    "453.9834ec83.chunk.js.map": "/text-to-speech-simple/static/js/453.9834ec83.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f1f4ca6.css",
+    "static/js/main.fb17e186.js"
+  ]
+}
