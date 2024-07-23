@@ -46,6 +46,7 @@ const Speech = () => {
           onChange={(e) => setVoiceIndex(e.target.value)}
           value={voiceIndex || ""}
         >
+        <option value="">Default</option>
           {voices.map((voice, index) => (
             <option key={index} value={index}>
               {`${voice.name} (${voice.lang})`}
