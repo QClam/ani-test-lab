@@ -5,8 +5,8 @@ import "./App.css";
 const Speech = () => {
   const [value, setValue] = useState("");
   const [voiceIndex, setVoiceIndex] = useState(null);
-  const { speak, voices } = useSpeechSynthesis();
-  const [selectedText, setSelectedText] = useState("")
+  const { speak, voices, cancel } = useSpeechSynthesis();
+  const [selectedText, setSelectedText] = useState("");
 
   const voice = voices[voiceIndex] || null;
 
@@ -18,14 +18,29 @@ const Speech = () => {
 
   const handleTextSelection = () => {
     const textarea = document.getElementById("text-to-speech-area");
-    const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+    const selectedText = textarea.value.substring(
+      textarea.selectionStart,
+      textarea.selectionEnd
+    );
     setSelectedText(selectedText);
     if (!selectedText) {
-      alert("Please select the text you want to speech")
+      alert("Please select the text you want to speech");
     } else {
-      speak({text: selectedText, voice: voice})
+      speak({ text: selectedText, voice: voice });
     }
-  }
+  };
+
+  const handleTextSelectionToEnd = () => {
+    const textarea = document.getElementById("text-to-speech-area");
+    // const startPosition = textarea.selectionStart;
+    const selectedText = textarea.value.substring(textarea.selectionStart);
+    setSelectedText(selectedText);
+    if (!selectedText) {
+      alert("Please select the text you want to speech");
+    } else {
+      speak({ text: selectedText, voice: voice });
+    }
+  };
 
   return (
     <div className="speech">
@@ -46,7 +61,7 @@ const Speech = () => {
           onChange={(e) => setVoiceIndex(e.target.value)}
           value={voiceIndex || ""}
         >
-        <option value="">Default</option>
+          <option value="">Default</option>
           {voices.map((voice, index) => (
             <option key={index} value={index}>
               {`${voice.name} (${voice.lang})`}
@@ -55,9 +70,17 @@ const Speech = () => {
         </select>
       </div>
       <div className="group">
-        <button onClick={handleTextSelection} style={{marginBottom: 10}}>Speech Select Text</button>
-        <button onClick={() => speak({text: value, voice: voice })}>
+        <button onClick={handleTextSelection} style={{ marginBottom: 10 }}>
+          Speech Select Text
+        </button>
+        <button onClick={handleTextSelectionToEnd} style={{ marginBottom: 10 }}>
+          Speech Select Text To End
+        </button>
+        <button onClick={() => speak({ text: value, voice: voice })} style={{ marginBottom: 10 }}>
           Speech All Text
+        </button>
+        <button onClick={cancel}>
+          Stop
         </button>
       </div>
     </div>
